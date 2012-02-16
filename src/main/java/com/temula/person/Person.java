@@ -1,6 +1,10 @@
 package com.temula.person;
 
 public class Person {
+	int personId;
+	String firstName;
+	String lastName;
+
 	public int getPersonId() {
 		return personId;
 	}
@@ -23,8 +27,5 @@ public class Person {
 	public String toString(){
 		return "first name="+getFirstName()+"; last name="+getLastName()+"; person id="+getPersonId();
 	}
-	int personId;
-	String firstName;
-	String lastName;
 	
 }

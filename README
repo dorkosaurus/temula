@@ -3,4 +3,3 @@ Temula technical documentation.
 Feb 12, 2012
 - This project uses both maven and app engine.   App engine deployment via eclipse is ideal but I haven't gotten it to work with the maven directory structure.  I prioritize maven over eclipse 
 deployment because dependency management is more important to me than ease of deployment.  Please use Google's command line tool to deploy (link currently here: http://code.google.com/appengine/docs/java/gettingstarted/uploading.html)
-
