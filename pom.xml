@@ -84,10 +84,5 @@
 	    <artifactId>jersey-grizzly2</artifactId>
 	    <version>1.11</version>
 	</dependency>
-	<dependency>
-		<groupId>com.google.inject</groupId>
-		<artifactId>guice</artifactId>
-		<version>3.0</version>
-	</dependency>
   </dependencies>
 </project>

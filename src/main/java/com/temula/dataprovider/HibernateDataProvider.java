@@ -21,6 +21,9 @@ public class HibernateDataProvider<T> implements DataProvider<T> {
 	private static SessionFactory sessionFactory=configureSessionFactory();
 
 	
+	static{
+		configureSessionFactory();
+	}
 	
 	
 	
@@ -43,16 +46,22 @@ public class HibernateDataProvider<T> implements DataProvider<T> {
      */
 	@Override
 	public List<T> get(T t) {
-        Session session = getSessionFactory().getCurrentSession();
+        Session session = getSessionFactory().openSession();
+        Transaction tx1 = session.beginTransaction();
         Criteria criteria = session.createCriteria(t.getClass());
         List<T>list= criteria.list();
+        tx1.commit();
+        session.close();
         return list;
 	}
 
 	@Override
 	public Status put( T t) {
-        Session session = getSessionFactory().getCurrentSession();
+        Session session = getSessionFactory().openSession();
+        Transaction tx1 = session.beginTransaction();
         session.save(t);
+        tx1.commit();
+        session.close();
         return Status.CREATED;
 	}
 
@@ -75,8 +84,11 @@ public class HibernateDataProvider<T> implements DataProvider<T> {
 
 	@Override
 	public Status delete(T t) {
-        Session session = getSessionFactory().getCurrentSession();
+        Session session = getSessionFactory().openSession();
+        Transaction tx1 = session.beginTransaction();
         session.delete(t);
+        tx1.commit();
+        session.close();
         return Status.OK;
 	}
 
