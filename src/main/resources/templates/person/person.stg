@@ -1,0 +1,66 @@
+list(list)::= <<
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<body>
+	<!-- MENU -->
+	<div> 
+	</div>
+
+	<!-- SEARCH -->
+	<form action='#' method='GET'>
+	<fieldset>
+		<legend>Person Search</legend>
+		<label>Name</label><input type='text' id='fullName' name='fullName' size='20'/>
+		<label>Address</label><input type='text' id='address' name='address' size='100'/>
+		<label>Phone No</label><input type='text' id='phoneNum' name='phoneNum'/>
+		<input type='SUBMIT' value='SEARCH'/>				
+	</fieldset>
+	</form>
+	<!-- note that this is an ordered list coming back from a database.  we may or may not want to suppress or change what displays on the list -->
+	<ol>
+		^list:listelement()$
+	</ol>
+</body>
+</html>
+>>
+
+instance(p)::= <<
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<body>
+	<!-- MENU -->
+	<div> 
+	</div>
+	<!-- PERSON DETAILS -->
+	<h1>^p.firstName$ ^p.lastName$</h1>
+	^shortxhtml(p)$
+	
+	</body>
+</html>
+>>
+
+listelement(p)::= <<
+	<li>^shortxhtml(p)$</li>
+>>
+
+shortxhtml(p)::= <<
+	<dl itemscope="none" itemtype="http://schema.org/Person">
+		<dt>Name <dd itemprop="name">^p.firstName$ ^p.lastName$</dd> </dt>
+		<dt>Address 
+				<dd itemprop="address"  itemscope="none" itemtype="http://schema.org/PostalAddress">
+					 <span itemprop="streetAddress">
+				    	20341 Whitworth Institute
+      				 	405 N. Whitworth
+				    </span>
+    				<span itemprop="addressLocality">Seattle</span>,
+				    <span itemprop="addressRegion">WA</span>
+    				<span itemprop="postalCode">98052</span>							
+				</dd> 
+		</dt>
+		<dt>Affiliation
+			<dd itemscope="none" itemtype="http://schema.org/Organization" itemprop="name"><a href='#'>Temula</a></dd>
+		</dt>
+	</dl>
+>>
