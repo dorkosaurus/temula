@@ -46,7 +46,7 @@ listelement(p)::= <<
 >>
 
 shortxhtml(p)::= <<
-	<dl itemscope="none" itemtype="http://schema.org/Person">
+	<dl itemscope="Person" itemtype="http://schema.org/Person">
 		<dt>Name <dd itemprop="name">^p.firstName$ ^p.lastName$</dd> </dt>
 		<dt>Address 
 				<dd itemprop="address"  itemscope="none" itemtype="http://schema.org/PostalAddress">
