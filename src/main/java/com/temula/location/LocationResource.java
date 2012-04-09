@@ -3,7 +3,9 @@ package com.temula.location;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
@@ -27,23 +29,32 @@ public class LocationResource {
 	}
 	
 	@GET 
-	@Path("temple")
-	@Produces("text/plain")
+	@Path("space")
+	@Produces("text/html")
 	public String getTempleList(){
-		String path2File = this.getClass().getResource("/templates/location/temple.stg").getPath();
+		String path2File = this.getClass().getResource("/templates/location/space.stg").getPath();
 		STGroup g = new STGroupFile(path2File,TEMPLATE_START_CHAR,TEMPLATE_END_CHAR);
 		ST st = g.getInstanceOf("list");
-		List<Temple> list = new ArrayList<Temple>();
-		for(int i=0;i<3;i++){
-			Temple temple = new Temple();
-			temple.setName("Kanchi"+i);
-			temple.setLatitude("latitude"+i);
-			temple.setLongitude("longitude"+i);
-			list.add(temple);
+		List<Space> list = new ArrayList<Space>();
+		for(int i=0;i<10;i++){
+			Space space = new Space();
+			space.setName("Space"+i);
+			space.setProximityToTemple(""+i+" km");
+			space.setNumAvailableRooms(i*2);
+			list.add(space);
 		}
 
 		StringTemplateProcessor stp = new StringTemplateProcessor();
 		String ret = stp.bind(list, st, "list");
 		return ret;
 	}
+	
+
+	@POST
+	@Path("space")
+	@Consumes("text/html")
+	public void postTemplate(String html){
+		
+	}
+	
 }

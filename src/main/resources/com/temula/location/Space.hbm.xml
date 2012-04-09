@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.jboss.org/dtd/hibernate/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.temula.location">
+    <class name="Space" table="space">
+        <id name="spaceId" column="spc_id">
+            <generator class="native"/>
+        </id>
+        <property name="name" column="spc_name"/>
+        <property name="proximityToTemple" column="spc_proximityToTemple"/>
+        <property name="numAvailableRooms" column="spc_numAvailableRooms"/>
+        <property name="hasMosquitoCoils" column="spc_hasMosquitoCoils"/>
+
+        <property name="hasBedBugs" column="spc_hasBedBugs"/>
+        <property name="hasRunningWater" column="spc_hasRunningWater"/>
+        <property name="hasCleanSheets" column="spc_hasCleanSheets"/>
+        <property name="hasWesternToilet" column="spc_hasWesternToilet"/>
+
+        <property name="hasIndianToilet" column="spc_hasIndianToilet"/>
+        <property name="hasGeyser" column="spc_hasGeyser"/>
+        <property name="hasSoap" column="spc_hasSoap"/>
+        <property name="hasBroom" column="spc_hasBroom"/>
+
+        <property name="hasDoormat" column="spc_hasDoormat"/>
+        <property name="hasLocksOnDoor" column="spc_hasLocksOnDoor"/>
+        <property name="hasLatch" column="spc_hasLatch"/>
+        <property name="hasWatchman" column="spc_hasWatchman"/>
+
+        <property name="hasShopsNearby" column="spc_hasShopsNearby"/>
+        <property name="hasVegBreakfast" column="spc_hasVegBreakfast"/>
+        <property name="hasNonVegBreakfast" column="spc_hasNonVegBreakfast"/>
+        <property name="hasNearbyVeg" column="spc_hasNearbyVeg"/>
+        <property name="hasNearbyNonVeg" column="spc_hasNearbyNonVeg"/>
+
+        <property name="hasTV" column="spc_hasTV"/>
+        <property name="isFamilyFriendly" column="spc_isFamilyFriendly"/>
+        <property name="isBachelorFriendly" column="spc_isBachelorFriendly"/>
+    </class>
+</hibernate-mapping>

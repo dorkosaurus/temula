@@ -7,6 +7,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
+import java.util.List;
 
 import javax.ws.rs.core.UriBuilder;
 import javax.xml.parsers.DocumentBuilder;
@@ -64,7 +65,7 @@ public class TestLocation extends TestCase {
 		 assertTrue(response.equals("testme"));
 	 }
 	 public void testTempleGet()throws Exception{
-		 String response = r.path("location/temple/").get(String.class);
+		 String response = r.path("location/space/").get(String.class);
 		 ByteArrayInputStream bis= new ByteArrayInputStream(response.getBytes());
 
 		 /** this is crazy...there's a bug in jtidy that's forcing me to read the document 2x 
@@ -92,7 +93,7 @@ public class TestLocation extends TestCase {
 		 XPath xpath = xpf.newXPath();
 		 
 		 //get name
-		 String expression = "//dl[@itemtype='http://schema.org/Place/Temple']/dd[@itemprop='name']";
+		 String expression = "//dl[@itemtype='http://schema.org/Place/Space']/dd[@itemprop='name']";
 		 NodeList nodes = (NodeList) xpath.evaluate(expression,doc2, XPathConstants.NODESET);
 		 assertNotNull(nodes);
 		 assertTrue(nodes.getLength()>0);
@@ -105,6 +106,10 @@ public class TestLocation extends TestCase {
 		 
 	 }
 	 
-	 
+	 public void testSpaceParser()throws Exception		{
+		 String response = r.path("location/space/").get(String.class);
+		 SpaceParser parser = new SpaceParser();
+		 List<Space>spaces = parser.parseXHTML(response);
+	 }
 	 
 }
