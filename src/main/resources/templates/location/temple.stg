@@ -1,0 +1,52 @@
+list(list)::= <<
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Hello world!</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+</head>
+	<body>
+	<!-- MENU -->
+	<div> 
+	</div>
+
+	<ol>
+		^list:listelement()$
+	</ol>
+</body>
+</html>
+>>
+
+instance(p)::= <<
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+</head>
+
+	<body>
+	<!-- MENU -->
+	<div>Menu goes here</div>
+	^shortxhtml(p)$
+	</body>
+</html>
+>>
+
+listelement(p)::= <<
+	<li>^shortxhtml(p)$</li>
+>>
+
+shortxhtml(p)::= <<
+<dl itemscope="itemscope" itemtype="http://schema.org/Place/Temple">
+  <dt >Name</dt> 
+  <dd itemprop="name">^p.name$</dd>
+
+
+  
+  <dt>Geographic Coordinates </dt>
+  <dd itemprop="geo" itemscope="itemscope" itemtype="http://schema.org/GeoCoordinates">
+  	<span itemprop="latitude">^p.longitude$</span>
+  	<span itemprop="longitude">^p.longitude$</span>
+  </dd>
+</dl>  
+>>

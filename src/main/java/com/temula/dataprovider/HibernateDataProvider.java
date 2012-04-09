@@ -18,13 +18,13 @@ import com.temula.DataProvider;
 public class HibernateDataProvider<T> implements DataProvider<T> {
 
 	private static ServiceRegistry serviceRegistry;
-	private static SessionFactory sessionFactory=configureSessionFactory();
+	private static SessionFactory sessionFactory=null;//configureSessionFactory();
 
-	
+/**	
 	static{
 		configureSessionFactory();
 	}
-	
+	**/
 	
 	
 	private static SessionFactory configureSessionFactory() throws HibernateException {

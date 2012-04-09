@@ -1,6 +1,7 @@
 package com.temula;
 
 import java.util.List;
+
 import javax.ws.rs.core.Response;
 
 public interface DataProvider<T> {

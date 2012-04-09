@@ -83,26 +83,26 @@
 	<dependency>
 	    <groupId>com.sun.jersey</groupId>
 	    <artifactId>jersey-server</artifactId>
-	    <version>1.11</version>
+	    <version>1.12</version>
 	</dependency>
 	<dependency>
 	    <groupId>com.sun.jersey</groupId>
 	    <artifactId>jersey-grizzly2</artifactId>
-	    <version>1.11</version>
+	    <version>1.12</version>
 	</dependency>
+          <dependency>
+                <groupId>com.sun.jersey.jersey-test-framework</groupId>
+                <artifactId>jersey-test-framework-grizzly2</artifactId>
+                <version>1.12</version>
+                <scope>test</scope>
+                </dependency>
+
 	<dependency>
 	    <groupId>com.google.inject</groupId>
 	    <artifactId>guice</artifactId>
 	    <version>2.0</version>
 	    <scope>system</scope>
 	     <systemPath>${guice_lib_path}</systemPath>
-	</dependency>
-	<dependency>
-	    <groupId>com.google.appengine</groupId>
-	    <artifactId>aopalliance</artifactId>
-	    <version>1.0</version>
-	    <scope>system</scope>
-	     <systemPath>${aop_lib_path}</systemPath>
 	</dependency>
 	<dependency>
 	    <groupId>com.google.appengine</groupId>
@@ -124,13 +124,6 @@
 	    <version>1.6.1</version>
 	    <scope>system</scope>
 	     <systemPath>${appengine_jsr107cache}</systemPath>
-	</dependency>
-	<dependency>
-	    <groupId>appengine_api_labs</groupId>
-	    <artifactId>appengine_api_labs</artifactId>
-	    <version>N</version>
-	    <scope>system</scope>
-	     <systemPath>${appengine_api_labs}</systemPath>
 	</dependency>
 	<dependency>
 	    <groupId>datanucleus_appengine</groupId>
@@ -160,6 +153,12 @@
 	    <scope>system</scope>
 	     <systemPath>${mysql_connector}</systemPath>
 	</dependency>
+	<dependency>
+		<groupId>net.sf.jtidy</groupId>
+		<artifactId>jtidy</artifactId>
+		<version>r938</version>
+	</dependency>
+
 
   </dependencies>
     <properties>
@@ -172,4 +171,22 @@
         <javassist>${basedir}/src/main/webapp/WEB-INF/lib/javassist-3.15.0-GA.jar</javassist>
         <mysql_connector>${basedir}/src/main/webapp/WEB-INF/lib/mysql-connector-java-5.1.18.jar</mysql_connector>
 	</properties>
+	<build>
+    <plugins>
+	      <plugin>
+	        <groupId>org.codehaus.mojo</groupId>
+	        <artifactId>versions-maven-plugin</artifactId>
+	        <version>1.3.1</version>
+	        <configuration>
+	          <includes>
+	            <include>org.codehaus.plexus:*</include>
+	            <include>junit:junit</include>
+	          </includes>
+	          <excludes>
+	            <exclude>org.codehaus.plexus:plexus-utils</exclude>
+	          </excludes>
+	        </configuration>
+	      </plugin>
+	</plugins>
+	</build>
 </project>

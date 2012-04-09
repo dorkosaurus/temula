@@ -1,24 +1,25 @@
 #!/bin/sh
-abspath="../temula_mvn_repo/"
-cmd=" mvn -DaltDeploymentRepository=snapshot-repo::default::file:$abspath/snapshots  clean deploy"
-echo $cmd
-$cmd
 
-cmd="cd $abspath"
-echo $abspath
-$cmd
+LOCAL_MVN_REPO="../temula_mvn_repo/"
+COMMAND=" mvn -DaltDeploymentRepository=snapshot-repo::default::file:$LOCAL_MVN_REPO/snapshots  clean deploy"
+echo $COMMAND
+$COMMAND
 
-cmd="git add *"
-echo $cmd
-$cmd
+COMMAND="cd $LOCAL_MVN_REPO"
+echo $LOCAL_MVN_REPO
+$COMMAND
 
-cmd="git commit -am \"snapshot\""
-echo $cmd
-$cmd
+COMMAND="git add *"
+echo $COMMAND
+$COMMAND
+
+COMMAND="git commit -am \"snapshot\""
+echo $COMMAND
+$COMMAND
 
 
-cmd="git push origin master"
-echo $cmd
-$cmd
+COMMAND="git push origin master"
+echo $COMMAND
+$COMMAND
 
-echo "update pom.xml with updated revision number "
+echo "make sure to update pom.xml with updated revision number "

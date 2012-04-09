@@ -1,14 +1,6 @@
 package com.temula.person;
 
-import java.io.Console;
-
 import javax.servlet.http.HttpServlet;
-
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Key;
-import com.google.inject.TypeLiteral;
-import com.temula.Resource;
 
 public class PersonServlet extends HttpServlet {
 
