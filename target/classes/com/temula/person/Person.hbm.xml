@@ -7,7 +7,7 @@
         <id name="personId" column="prsn_id">
             <generator class="native"/>
         </id>
-        <property name="firstName" column="prsn_fname"/>
-        <property name="lastName" column="prsn_lname"/>
+        <property  not-null="true" name="firstName" column="prsn_fname"/>
+        <property  not-null="true" name="lastName" column="prsn_lname"/>
     </class>
 </hibernate-mapping>

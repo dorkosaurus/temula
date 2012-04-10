@@ -7,8 +7,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -24,16 +27,20 @@ import javax.xml.xpath.XPathFactory;
 import junit.framework.TestCase;
 
 import org.glassfish.grizzly.http.server.HttpServer;
+import org.stringtemplate.v4.ST;
+import org.stringtemplate.v4.STGroup;
+import org.stringtemplate.v4.STGroupFile;
 import org.w3c.dom.Document;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.tidy.Tidy;
 
 import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.container.grizzly2.GrizzlyServerFactory;
 import com.sun.jersey.api.core.PackagesResourceConfig;
 import com.sun.jersey.api.core.ResourceConfig;
+import com.temula.StringTemplateProcessor;
 
 public class TestLocation extends TestCase {
 	HttpServer httpServer = null;
@@ -97,19 +104,30 @@ public class TestLocation extends TestCase {
 		 NodeList nodes = (NodeList) xpath.evaluate(expression,doc2, XPathConstants.NODESET);
 		 assertNotNull(nodes);
 		 assertTrue(nodes.getLength()>0);
-		 
-		 
-		 for(int i=0;i<nodes.getLength();i++){
-			 Node node = nodes.item(i);
-			 System.out.println(node.getNodeName()+node.getTextContent());
-		 }
-		 
 	 }
 	 
-	 public void testSpaceParser()throws Exception		{
-		 String response = r.path("location/space/").get(String.class);
-		 SpaceParser parser = new SpaceParser();
-		 List<Space>spaces = parser.parseXHTML(response);
+	 public void testPost()throws Exception		{
+		 List<Space>list = new ArrayList<Space>();
+		 for(int i=0;i<10;i++){
+			 Space space = new Space();
+			 space.setName("Space"+i);
+			 space.setProximityToTemple(""+i+" km");
+			 space.setNumAvailableRooms(i*2);
+			 list.add(space);
+		 }	
+		 char TEMPLATE_START_CHAR='^';
+		 char TEMPLATE_END_CHAR='$';
+
+		 String path2File = this.getClass().getResource("/templates/location/space.stg").getPath();
+		 STGroup g = new STGroupFile(path2File,TEMPLATE_START_CHAR,TEMPLATE_END_CHAR);
+		 ST st = g.getInstanceOf("list");
+		 StringTemplateProcessor stp = new StringTemplateProcessor();
+		 String ret = stp.bind(list, st, "list");
+
+
+		 ClientResponse response = r.path("location/space/").type(MediaType.TEXT_HTML).post(ClientResponse.class,ret );
+		 ClientResponse.Status status = response.getClientResponseStatus();
+		 assertTrue(status==ClientResponse.Status.OK);
 	 }
 	 
 }

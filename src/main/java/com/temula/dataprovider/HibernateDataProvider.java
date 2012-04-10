@@ -20,12 +20,14 @@ public class HibernateDataProvider<T> implements DataProvider<T> {
 	private static ServiceRegistry serviceRegistry;
 	private static SessionFactory sessionFactory=null;//configureSessionFactory();
 
-/**	
 	static{
 		configureSessionFactory();
 	}
-	**/
+
 	
+	public static void main(String args[]){
+		System.out.println("Starting hibernate!");
+	}
 	
 	private static SessionFactory configureSessionFactory() throws HibernateException {
 	    Configuration configuration = new Configuration();

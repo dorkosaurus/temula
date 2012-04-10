@@ -52,5 +52,57 @@ shortxhtml(p)::= <<
 
   <dt >Has Bed Bugs</dt> 
   <dd itemprop="hasBedBugs">^p.hasBedBugs$</dd>
+
+  <dt >Has Running Water</dt> 
+  <dd itemprop="hasRunningWater">^p.hasRunningWater$</dd>
+
+  <dt >Has Clean Sheets</dt> 
+  <dd itemprop="hasCleanSheets">^p.hasCleanSheets$</dd>
+
+  <dt >Has Western Toilets</dt> 
+  <dd itemprop="hasWesternToilet">^p.hasWesternToilet$</dd>
+
+  <dt >Has Indian Toilets</dt> 
+  <dd itemprop="hasIndianToilet">^p.hasIndianToilet$</dd>
+
+  <dt >Has Geyser</dt> 
+  <dd itemprop="hasGeyser">^p.hasGeyser$</dd>
+
+  <dt >Has Soap</dt> 
+  <dd itemprop="hasSoap">^p.hasSoap$</dd>
+
+  <dt >Has Broom</dt> 
+  <dd itemprop="hasBroom">^p.hasBroom$</dd>
+
+  <dt >Has Doormat</dt> 
+  <dd itemprop="hasDoormat">^p.hasDoormat$</dd>
+
+  <dt >Has Locks On Door</dt> 
+  <dd itemprop="hasLocksOnDoor">^p.hasLocksOnDoor$</dd>
+
+  <dt >Has Latch</dt> 
+  <dd itemprop="hasLatch">^p.hasLatch$</dd>
+
+  <dt >Has Watchman</dt> 
+  <dd itemprop="hasWatchman">^p.hasWatchman$</dd>
+
+  <dt >Has Shops Nearby</dt> 
+  <dd itemprop="hasShopsNearby">^p.hasShopsNearby$</dd>
+
+  <dt >Has Veg Breakfast</dt> 
+  <dd itemprop="hasVegBreakfast">^p.hasVegBreakfast$</dd>
+
+  <dt >Has NonVeg Breakfast</dt> 
+  <dd itemprop="hasNonVegBreakfast">^p.hasNonVegBreakfast$</dd>
+
+  <dt >Has nearby veg</dt> 
+  <dd itemprop="hasNearbyVeg">^p.hasNearbyVeg$</dd>
+
+  <dt >Has nearby nonveg</dt> 
+  <dd itemprop="hasNearbyNonVeg">^p.hasNearbyNonVeg$</dd>
+
+  <dt >Has TV</dt> 
+  <dd itemprop="hasTV">^p.hasTV$</dd>
+
 </dl>  
 >>

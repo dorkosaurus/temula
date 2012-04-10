@@ -165,7 +165,7 @@ public class Space {
 		this.hasVegBreakfast = hasVegBreakfast;
 	}
 
-	public boolean isHasNonVegBreakfast() {
+	public boolean gethasNonVegBreakfast() {
 		return hasNonVegBreakfast;
 	}
 
@@ -173,7 +173,7 @@ public class Space {
 		this.hasNonVegBreakfast = hasNonVegBreakfast;
 	}
 
-	public boolean isHasNearbyVeg() {
+	public boolean getHasNearbyVeg() {
 		return hasNearbyVeg;
 	}
 
@@ -181,7 +181,7 @@ public class Space {
 		this.hasNearbyVeg = hasNearbyVeg;
 	}
 
-	public boolean isHasNearbyNonVeg() {
+	public boolean getHasNearbyNonVeg() {
 		return hasNearbyNonVeg;
 	}
 
@@ -189,7 +189,7 @@ public class Space {
 		this.hasNearbyNonVeg = hasNearbyNonVeg;
 	}
 
-	public boolean isHasTV() {
+	public boolean getHasTV() {
 		return hasTV;
 	}
 
@@ -197,19 +197,19 @@ public class Space {
 		this.hasTV = hasTV;
 	}
 
-	public boolean isFamilyFriendly() {
+	public boolean getIsFamilyFriendly() {
 		return isFamilyFriendly;
 	}
 
-	public void setFamilyFriendly(boolean isFamilyFriendly) {
+	public void setIsFamilyFriendly(boolean isFamilyFriendly) {
 		this.isFamilyFriendly = isFamilyFriendly;
 	}
 
-	public boolean isBachelorFriendly() {
+	public boolean getIsBachelorFriendly() {
 		return isBachelorFriendly;
 	}
 
-	public void setBachelorFriendly(boolean isBachelorFriendly) {
+	public void setIsBachelorFriendly(boolean isBachelorFriendly) {
 		this.isBachelorFriendly = isBachelorFriendly;
 	}
 	public String getName() {
@@ -218,6 +218,14 @@ public class Space {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public int getSpaceId() {
+		return spaceId;
+	}
+
+	public void setSpaceId(int spaceId) {
+		this.spaceId = spaceId;
 	}
 
 }

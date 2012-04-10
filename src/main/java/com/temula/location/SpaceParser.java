@@ -20,6 +20,7 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.tidy.Tidy;
@@ -43,11 +44,13 @@ public class SpaceParser {
 		 DocumentBuilder db = dbf.newDocumentBuilder();
 		 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
+		 
+		 ByteArrayOutputStream tidyOut = new ByteArrayOutputStream();
 		 Tidy tidy = new Tidy();
 		 tidy.setQuiet(true);
 		 tidy.setShowWarnings(false);
-		 Document doc = tidy.parseDOM(bis, System.out);
-
+		 Document doc = tidy.parseDOM(bis, tidyOut);
+		 
 		 //first read
 		 Source xmlSource = new DOMSource(doc);
 		 Result outputTarget = new StreamResult(outputStream);
@@ -63,7 +66,6 @@ public class SpaceParser {
 		 /** GET THE LIST OF SPACES **/
 		 String expression = "//dl[@itemtype='http://schema.org/Place/Space']";
 		 NodeList nodes = (NodeList) xpath.evaluate(expression,doc2, XPathConstants.NODESET);
-
 		 
 		 /** FOR EACH SPACE **/
 		 for(int idx=0;idx<nodes.getLength();idx++){
@@ -74,7 +76,7 @@ public class SpaceParser {
 			 for(int fieldIdx=0;fieldIdx<fields.length;fieldIdx++){
 
 				 String fname = fields[fieldIdx].getName();
-
+				 
 				 //FIND THE PUBLIC SETTER FOR THE ATTRIBUTE OR MOVE ON
 				 String expectedMethodName = "set"+fname.toLowerCase();
 				 Method method=null;
@@ -89,26 +91,35 @@ public class SpaceParser {
 				 if(method==null)continue;
 
 				 
-				 String fieldExpression = "//dl[@itemtype='http://schema.org/Place/Space']/dd[@itemprop='"+fname+"']";
-				 NodeList nl = (NodeList)xpath.evaluate(fieldExpression,node, XPathConstants.NODESET);
 				 
-			 System.out.println(nl.getLength());
-		 }
-			 /*				 
-				 System.out.println("fieldExpression="+fieldExpression+" methodName="+expectedMethodName+" value="+value+" node="+node);
+				 String subexpression = "./dd[@itemprop='"+fname+"']";
+				 String value = (String) xpath.evaluate(subexpression,node, XPathConstants.STRING);
 
-				 boolean startsWithHas = (fname.toLowerCase().startsWith("has"));
-				 boolean startsWithIs = (fname.toLowerCase().startsWith("is"));
-
-				 Object obj = (startsWithHas || startsWithIs)?new Boolean(value):value;
+				 //I'm asserting that a null or empty string should be ignored
+				 if(value==null||value.trim().length()==0){
+					 continue;
+				 }
 				 
-				 method.invoke(space, obj);
-	*/
+				 String className = fields[fieldIdx].getType().getName().toLowerCase();
+				 try{
+					 if(className.equals("boolean")){
+						 Boolean b = new Boolean(value);
+						 method.invoke(space, b);
+					 }
+					 else if(className.equals("int")){
+						 Integer itg = new Integer(value);
+						 method.invoke(space, itg);
+					 }
+					 else{
+						 method.invoke(space, value);
+					 }
+				 }
+				 catch(Exception e){
+					 e.printStackTrace();
+				 }
 			 }
 			 spaces.add(space);
 		 }
-		 
-
 		 return spaces;
 	}
 }

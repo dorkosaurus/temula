@@ -1,5 +1,6 @@
 package com.temula.location;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,18 +9,25 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
 
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroup;
 import org.stringtemplate.v4.STGroupFile;
 
 import com.temula.StringTemplateProcessor;
+import com.temula.dataprovider.HibernateDataProvider;
 
 @Path("location")
 public class LocationResource {
 	private static final char TEMPLATE_START_CHAR='^';
 	private static final char TEMPLATE_END_CHAR='$';
 
+	/** Making this an instance variable so it can be reused**/
+	private SpaceParser parser = new SpaceParser();
+	private HibernateDataProvider<Space> dataProvider = new HibernateDataProvider<Space>();
+	
+	
 	
 	
 	@GET
@@ -53,8 +61,15 @@ public class LocationResource {
 	@POST
 	@Path("space")
 	@Consumes("text/html")
-	public void postTemplate(String html){
-		
-	}
-	
+	public Response postTemplate(String html){
+		try{
+			List<Space>spaces = parser.parseXHTML(html);
+			this.dataProvider.post(spaces);
+			return Response.ok().build();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return Response.serverError().build();
+		}
+	}	
 }
