@@ -1,7 +1,9 @@
 package com.temula.dataprovider;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import javax.servlet.http.HttpServlet;
 import javax.ws.rs.core.Response.Status;
 
 import org.hibernate.Criteria;
@@ -10,15 +12,19 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
 import com.temula.DataProvider;
+import com.temula.location.LocationResource;
+import com.temula.location.Space;
 
-public class HibernateDataProvider<T> implements DataProvider<T> {
+public class HibernateDataProvider<T> extends HttpServlet  implements DataProvider<T> {
 
 	private static ServiceRegistry serviceRegistry;
 	private static SessionFactory sessionFactory=null;//configureSessionFactory();
+	static final Logger logger = Logger.getLogger(LocationResource.class.getName());
 
 	static{
 		configureSessionFactory();
@@ -51,6 +57,15 @@ public class HibernateDataProvider<T> implements DataProvider<T> {
         Session session = getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         Criteria criteria = session.createCriteria(t.getClass());
+        
+        if(t instanceof Space){
+        	Space space = (Space)t;
+        	Integer spaceId = new Integer(space.getSpaceId());
+        	if(spaceId>0){
+        		criteria.add(Restrictions.eq("spaceId", spaceId));
+        	}
+        }
+        
         List<T>list= criteria.list();
         tx1.commit();
         session.close();

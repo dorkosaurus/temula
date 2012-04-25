@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>temula</groupId>
   <artifactId>temula_person</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
+  <version>0.0.3-SNAPSHOT</version>
   <packaging>war</packaging>
 <repositories>
       <repository>
@@ -24,7 +24,11 @@
      </repository>  
   </repositories>
   <dependencies>
-    <dependency>
+<dependency>
+	<groupId>log4j</groupId>
+	<artifactId>log4j</artifactId>
+	<version>1.2.16</version>
+</dependency>    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.8.1</version>
@@ -154,12 +158,34 @@
 	     <systemPath>${mysql_connector}</systemPath>
 	</dependency>
 	<dependency>
+	    <groupId>vtdxml</groupId>
+	    <artifactId>vtdxml</artifactId>
+	    <version>2.10</version>
+	    <scope>system</scope>
+	     <systemPath>${vtdxml}</systemPath>
+	</dependency>
+	<dependency>
 		<groupId>net.sf.jtidy</groupId>
 		<artifactId>jtidy</artifactId>
 		<version>r938</version>
 	</dependency>
 
-
+     <dependency>
+          <groupId>net.sourceforge.saxon</groupId>
+          <artifactId>saxon</artifactId>
+          <version>9.1.0.8</version>
+      </dependency>
+      <dependency>
+          <groupId>net.sourceforge.saxon</groupId>
+          <artifactId>saxon</artifactId>
+          <version>9.1.0.8</version>
+          <classifier>s9api</classifier>
+      </dependency>
+	<dependency>
+		<groupId>com.sun.jersey</groupId>
+		<artifactId>jersey-servlet</artifactId>
+		<version>1.12</version>
+	</dependency>
   </dependencies>
     <properties>
         <guice_lib_path>${basedir}/src/main/webapp/WEB-INF/lib/guice-2.0.jar</guice_lib_path>
@@ -170,6 +196,7 @@
         <google_sql>${basedir}/src/main/webapp/WEB-INF/lib/google_sql.jar</google_sql>
         <javassist>${basedir}/src/main/webapp/WEB-INF/lib/javassist-3.15.0-GA.jar</javassist>
         <mysql_connector>${basedir}/src/main/webapp/WEB-INF/lib/mysql-connector-java-5.1.18.jar</mysql_connector>
+		<vtdxml>${basedir}/src/main/webapp/WEB-INF/lib/vtd-xml.jar</vtdxml>
 	</properties>
 	<build>
     <plugins>

@@ -2,27 +2,14 @@ package com.temula.location;
 
 
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
+
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.Result;
-import javax.xml.transform.Source;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathFactory;
 
 import junit.framework.TestCase;
 
@@ -30,9 +17,6 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroup;
 import org.stringtemplate.v4.STGroupFile;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.w3c.tidy.Tidy;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
@@ -73,45 +57,20 @@ public class TestLocation extends TestCase {
 	 }
 	 public void testTempleGet()throws Exception{
 		 String response = r.path("location/space/").get(String.class);
-		 ByteArrayInputStream bis= new ByteArrayInputStream(response.getBytes());
-
-		 /** this is crazy...there's a bug in jtidy that's forcing me to read the document 2x 
-		  * http://stackoverflow.com/questions/1530154/jtidy-upgrade-broke-document-xpaths
-		  * */
-		 DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-		 DocumentBuilder db = dbf.newDocumentBuilder();
-		 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-
-		 Tidy tidy = new Tidy();
-		 tidy.setQuiet(true);
-		 tidy.setShowWarnings(false);
-		 Document doc = tidy.parseDOM(bis, System.out);
-
-		 //first read
-		 Source xmlSource = new DOMSource(doc);
-		 Result outputTarget = new StreamResult(outputStream);
-		 TransformerFactory.newInstance().newTransformer().transform(xmlSource, outputTarget);
-		 InputStream is = new ByteArrayInputStream(outputStream.toByteArray());
-
-		 //second read...without this second read I get a ArrayOutOfBoundsException
-		 Document doc2 = db.parse(is);
-		 
-		 XPathFactory xpf = XPathFactory.newInstance();
-		 XPath xpath = xpf.newXPath();
-		 
-		 //get name
-		 String expression = "//dl[@itemtype='http://schema.org/Place/Space']/dd[@itemprop='name']";
-		 NodeList nodes = (NodeList) xpath.evaluate(expression,doc2, XPathConstants.NODESET);
-		 assertNotNull(nodes);
-		 assertTrue(nodes.getLength()>0);
+		 SpaceParser parser = new SpaceParserVTDXML();
+		 List<Space>spaces = parser.parseXHTML(response);
+		 assertNotNull(spaces);
+		 assertTrue(spaces.size()>0);
 	 }
+
+	
 	 
 	 public void testPost()throws Exception		{
 		 List<Space>list = new ArrayList<Space>();
 		 for(int i=0;i<10;i++){
 			 Space space = new Space();
 			 space.setName("Space"+i);
-			 space.setProximityToTemple(""+i+" km");
+			 space.setProximityToTempleKM(""+i+" km");
 			 space.setNumAvailableRooms(i*2);
 			 list.add(space);
 		 }	

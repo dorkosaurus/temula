@@ -3,7 +3,8 @@ package com.temula.location;
 public class Space {
 	int spaceId;
 	String name;
-	String proximityToTemple;
+	String proximityToTempleKM;
+
 	int numAvailableRooms=0;
 	
 	boolean hasMosquitoCoils=false;
@@ -28,13 +29,16 @@ public class Space {
 	boolean isFamilyFriendly=false;
 	boolean isBachelorFriendly=false;
 		
-
-	public String getProximityToTemple() {
-		return proximityToTemple;
+	public String toString(){
+		return name;
 	}
 
-	public void setProximityToTemple(String proximityToTemple) {
-		this.proximityToTemple = proximityToTemple;
+	public String getProximityToTempleKM() {
+		return proximityToTempleKM;
+	}
+
+	public void setProximityToTempleKM(String proximityToTempleKM) {
+		this.proximityToTempleKM = proximityToTempleKM;
 	}
 
 	public int getNumAvailableRooms() {
@@ -165,7 +169,11 @@ public class Space {
 		this.hasVegBreakfast = hasVegBreakfast;
 	}
 
+	/** This seems to be a requirement for hibernate...a hack but needed */
 	public boolean gethasNonVegBreakfast() {
+		return hasNonVegBreakfast;
+	}
+	public boolean isHasNonVegBreakfast() {
 		return hasNonVegBreakfast;
 	}
 
