@@ -50,7 +50,7 @@ shortxhtml(p)::= <<
 			<span itemprop="numAvailableRooms">^p.numAvailableRooms$</span>
 	</div>
 	<div>
-			<span itemprop="spaceId"><a href='space/^p.spaceId$'>^p.spaceId$</a></span>
+			<span ><a itemprop="spaceId" href='space/^p.spaceId$'>^p.spaceId$</a></span>
 	</div>
 </div>
 >>
