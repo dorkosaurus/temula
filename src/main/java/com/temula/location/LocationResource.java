@@ -79,12 +79,10 @@ public class LocationResource {
 	@Consumes("text/html")
 	public Response postTemplate(String html){
 		Clock clock = new Clock();
-		logger.info(html);
 		try{
 			
 			List<Space>spaces = parser.parseXHTML(html);
 			clock.lap("parsed html");
-			for(Space space:spaces)logger.info("space name="+space.getName());
 			this.dataProvider.post(spaces);
 			clock.lap("saved data");
 			return Response.ok().build();
@@ -101,5 +99,7 @@ public class LocationResource {
 			e.printStackTrace();
 			return Response.serverError().build();
 		}
-	}	
+	}
+	
+
 }

@@ -158,6 +158,5 @@ public class SpaceParserVTDXML implements SpaceParser {
 		 catch(Exception e){
 			 throw e;
 		 }
-
-	}
+}
 }

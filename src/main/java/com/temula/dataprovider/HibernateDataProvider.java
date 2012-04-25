@@ -84,7 +84,7 @@ public class HibernateDataProvider<T> extends HttpServlet  implements DataProvid
 
 	@Override
 	public Status post(List<T> list) {
-        Session session = getSessionFactory().getCurrentSession();
+        Session session = getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         
         for ( int i=0; i<list.size(); i++ ) {
@@ -96,6 +96,7 @@ public class HibernateDataProvider<T> extends HttpServlet  implements DataProvid
             }
         }
         tx.commit();
+        session.close();
         return Status.CREATED;
 	}
 
