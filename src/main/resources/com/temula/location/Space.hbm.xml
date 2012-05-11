@@ -9,32 +9,31 @@
         </id>
         <property  name="name" column="spc_name" not-null="true"/>
         <property name="proximityToTempleKM" column="spc_proximity_to_temple_km" />
-        <property name="numAvailableRooms" column="spc_num_available_rooms"/>
+        <property name="numSingleACRooms" column="spc_num_single_ac_rooms"/>
+        <property name="numDoubleACRooms" column="spc_num_double_ac_rooms"/>
+        <property name="numNonACRooms" column="spc_num_non_ac_rooms"/>
         <property name="hasMosquitoCoils" column="spc_has_mosquito_coils"/>
-
-        <property name="hasBedBugs" column="spc_has_bed_bugs"/>
-        <property name="hasRunningWater" column="spc_has_running_water"/>
+        <property name="hasTapWater" column="spc_has_tap_water"/>
         <property name="hasCleanSheets" column="spc_has_clean_sheets"/>
         <property name="hasWesternToilet" column="spc_has_western_toilet"/>
-
         <property name="hasIndianToilet" column="spc_has_indian_toilet"/>
-        <property name="hasGeyser" column="spc_has_geyser"/>
+        <property name="hasHotWater247" column="spc_has_hot_water_24_7"/>
         <property name="hasSoap" column="spc_has_soap"/>
         <property name="hasBroom" column="spc_has_broom"/>
-
         <property name="hasDoormat" column="spc_has_doormat"/>
         <property name="hasLocksOnDoor" column="spc_has_locks_on_door"/>
-        <property name="hasLatch" column="spc_has_latch"/>
         <property name="hasWatchman" column="spc_has_watchman"/>
-
-        <property name="hasShopsNearby" column="spc_has_shops_nearby"/>
-        <property name="hasVegBreakfast" column="spc_has_veg_breakfast"/>
-        <property name="hasNonVegBreakfast" column="spc_has_non_veg_breakfast"/>
-        <property name="hasNearbyVeg" column="spc_has_nearby_veg"/>
-        <property name="hasNearbyNonVeg" column="spc_has_nearby_nonveg"/>
-
+        <property name="breakfastOptions" column="spc_breakfast_options"/>
+        <property name="lunchOptions" column="spc_lunch_options"/>
+        <property name="dinnerOptions" column="spc_dinner_options"/>
         <property name="hasTV" column="spc_hasTV"/>
         <property name="isFamilyFriendly" column="spc_is_family_friendly"/>
-        <property name="isBachelorFriendly" column="spc_is_bachelor_friendly"/>
+        <property name="bedOptions" column="spc_bed_options"/>
+        <property name="hasTowels" column="spc_has_towels"/>
+        <property name="hasPoojaBookingOption" column="spc_has_pooja_booking_option"/>
+        <property name="hasBackupPower" column="spc_has_backup_power"/>
+        <property name="hasElevator" column="spc_has_elevator"/>
+        <property name="hasWheelChair" column="spc_has_wheelchair"/>
+        <property name="hasBottledWater" column="spc_has_bottled_water"/>
     </class>
 </hibernate-mapping>

@@ -1,0 +1,243 @@
+list(list)::= <<
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Temula Spaces</title>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+	<link rel="stylesheet" href="/temula/temulastyle.css" type="text/css" media="all" />
+</head>
+<body>
+	<div>
+		<img width="106" height="40" alt="temula logo" src="logo.png"/>
+	</div>
+	<div class="searchform">
+		<form>
+			<label> Destination</label><input type="text" name="destination" size="40"/>
+			<label>Check-in</label><input type="text" name="checkin" size="10" value="mm/dd/yyyy"/>
+			<label>Check-out</label><input type="text" name="checkout" size="10" value="mm/dd/yyyy"/>
+			<label>Number of rooms</label><select name="numrooms"><option value="1">1</option></select>
+			<label>Adults (18+)</label><select name="numadults"><option value="1">1</option></select>
+			<label>Minors (0-17)</label><select name="numminors"><option value="1">1</option></select>
+			<input type="SUBMIT" value="SEARCH"/>			
+		</form>
+	</div>
+	<div class="searchresults">
+		<select><option>Sort results by:</option></select>
+		<ol>
+			^list:listelement()$
+		</ol>
+	</div>
+</body>
+</html>
+>>
+
+
+longlist(list)::= <<
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Temula Spaces</title>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+	<link rel="stylesheet" href="/temula/temulastyle.css" type="text/css" media="all" />
+</head>
+<body>
+	<div>
+		<img width="106" height="40" alt="temula logo" src="logo.png"/>
+	</div>
+	<div class="searchform">
+		<form>
+			<label> Destination</label><input type="text" name="destination" size="40"/>
+			<label>Check-in</label><input type="text" name="checkin" size="10" value="mm/dd/yyyy"/>
+			<label>Check-out</label><input type="text" name="checkout" size="10" value="mm/dd/yyyy"/>
+			<label>Number of rooms</label><select name="numrooms"><option value="1">1</option></select>
+			<label>Adults (18+)</label><select name="numadults"><option value="1">1</option></select>
+			<label>Minors (0-17)</label><select name="numminors"><option value="1">1</option></select>
+			<input type="SUBMIT" value="SEARCH"/>			
+		</form>
+	</div>
+	<div class="searchresults">
+		<select><option>Sort results by:</option></select>
+		<ol>
+			^list:longlistelement()$
+		</ol>
+	</div>
+</body>
+</html>
+>>
+
+
+instance(p)::= <<
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Space Details</title>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+	<link rel="stylesheet" href="/temula/temulastyle.css" type="text/css" media="all" />
+</head>
+
+	<body>
+		<!-- MENU -->
+		<div>Menu goes here</div>
+		<div class="pictures">
+			<!-- we need to figure out the size of pictures -->
+			<!-- Big image -->
+			<img width="342" height="292" alt="image from image sprite goes here" src="image.png"/>	
+			<!-- little image -->
+			<img width="342" height="200" alt="image from image sprite goes here" src="image.png"/>	
+		</div>
+		
+		<div class="data">
+			<!-- hook for enabling tabs-->
+			<ul><li>Tab 1</li><li>Tab 2</li></ul>
+			<div id="description">
+				lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor 
+			</div>
+			<div id="amenities">
+				^longxhtml(p)$
+			</div>
+		</div>
+	</body>
+</html>
+>>
+
+listelement(p)::= <<
+	<li>
+		^shortxhtml(p)$
+	</li>
+>>
+
+longlistelement(p)::= <<
+	<li>
+		^longxhtml(p)$
+	</li>
+>>
+
+
+shortxhtml(p)::= <<
+<div class="spaceataglance" itemscope="itemscope" itemtype="http://schema.org/Place/Space">
+		<div class="thumbnail">
+				<img width="114" height="74" alt="image from image sprite goes here" src="image.png"/>
+		</div>
+		<div>
+			<div class="spacedetails">
+					<span ><a itemprop="spaceId" href='space/^p.spaceId$'><span itemprop="name">^p.name$</span></a></span>
+			</div>
+			<div class="summary">		
+				<div>
+						<label>TV</label>
+						<span itemprop="hasTV">^p.hasTV$</span>
+				</div>
+				<div>
+						<label>Tap Water</label>
+						<span itemprop="hasTapWater">^p.hasTapWater$</span>
+				</div>
+				<div>
+						<label>Breakfast Options</label>
+						<span itemprop="breakfastOptions">^p.breakfastOptions$</span>
+				</div>
+				<div>
+						<label>Distance From Temple</label>
+						<span itemprop="proximityToTempleKM">^p.proximityToTempleKM$</span>
+				</div>
+				<div class="price">
+						&#36;500
+				</div>
+			</div>
+		</div>
+</div>
+>>
+
+longxhtml(p)::= <<
+<div itemscope="itemscope" itemtype="http://schema.org/Place/Space">
+	<dl>
+
+	  <dt>Space ID</dt>
+	  <dd><span itemprop="spaceId">^p.spaceId$</span></dd>
+
+
+	  <dt>Name</dt>
+	  <dd><span itemprop="name">^p.name$</span></dd>
+	
+	  <dt>Proximity To Temple</dt>
+	  <dd><span itemprop="proximityToTempleKM">^p.proximityToTempleKM$</span></dd>
+	
+	  <dt>Total # Rooms</dt>
+	  <dd><span itemprop="totalRooms">^p.totalRooms$</span></dd>
+	
+	  <dt>Total # Single AC Rooms</dt>
+	  <dd><span itemprop="numSingleACRooms">^p.numSingleACRooms$</span></dd>
+
+	  <dt>Total # Double AC Rooms</dt>
+	  <dd><span itemprop="numDoubleACRooms">^p.numDoubleACRooms$</span></dd>
+
+	  <dt>Total # Non AC Rooms</dt>
+	  <dd><span itemprop="numNonACRooms">^p.numNonACRooms$</span></dd>
+
+	  <dt>Has Mosquito Coils</dt>
+	  <dd><span itemprop="hasMosquitoCoils">^p.hasMosquitoCoils$</span></dd>
+	
+	  <dt>Has Tap Water</dt>
+	  <dd><span itemprop="hasTapWater">^p.hasTapWater$</span></dd>
+	
+	  <dt>Has Clean Sheets</dt>
+	  <dd><span itemprop="hasCleanSheets">^p.hasCleanSheets$</span></dd>
+	
+	  <dt>Has Western Toilets</dt>
+	  <dd><span itemprop="hasWesternToilet">^p.hasWesternToilet$</span></dd>
+	
+	  <dt>Has Indian Toilets</dt>
+	  <dd><span itemprop="hasIndianToilet">^p.hasIndianToilet$</span></dd>
+	
+	  <dt>Is Hot Water Available 24x7</dt>
+	  <dd><span itemprop="hasHotWater247">^p.hasHotWater247$</span></dd>
+	
+	  <dt>Has Soap</dt>
+	  <dd><span itemprop="hasSoap">^p.hasSoap$</span></dd>
+	
+	  <dt>Has Broom</dt>
+	  <dd><span itemprop="hasBroom">^p.hasBroom$</span></dd>
+	
+	  <dt>Has Doormat</dt>
+	  <dd><span itemprop="hasDoormat">^p.hasDoormat$</span></dd>
+	
+	  <dt>Has Locks On Door</dt>
+	  <dd><span itemprop="hasLocksOnDoor">^p.hasLocksOnDoor$</span></dd>
+	
+	  <dt>Has Watchman</dt>
+	  <dd><span itemprop="hasWatchman">^p.hasWatchman$</span></dd>
+	
+	  <dt>Breakfast Options</dt>
+	  <dd><span itemprop="breakfastOptions">^p.breakfastOptions$</span></dd>
+
+	  <dt>Lunch Options</dt>
+	  <dd><span itemprop="lunchOptions">^p.lunchOptions$</span></dd>
+
+	  <dt>Dinner Options</dt>
+	  <dd><span itemprop="dinnerOptions">^p.dinnerOptions$</span></dd>
+
+	  <dt>TV</dt>
+	  <dd><span itemprop="hasTV">^p.hasTV$</span></dd>
+
+	  <dt>Bed</dt>
+	  <dd><span itemprop="bedOptions">^p.bedOptions$</span></dd>
+
+	  <dt>Towels</dt>
+	  <dd><span itemprop="hasTowels">^p.hasTowels$</span></dd>
+	
+	  <dt>Pooja Booking option</dt>
+	  <dd><span itemprop="hasPoojaBookingOption">^p.hasPoojaBookingOption$</span></dd>
+	
+	  <dt>Is Backup Available</dt>
+	  <dd><span itemprop="hasBackupPower">^p.hasBackupPower$</span></dd>
+	
+	  <dt>Elevator Available</dt>
+	  <dd><span itemprop="hasElevator">^p.hasElevator$</span></dd>
+	
+	  <dt>Wheel Chair Facilities</dt>
+	  <dd><span itemprop="hasWheelChair">^p.hasWheelChair$</span></dd>
+	
+	  <dt>Bottled Water</dt>
+	  <dd><span itemprop="hasBottledWater">^p.hasBottledWater$</span></dd>
+	</dl>
+</div>  
+>>

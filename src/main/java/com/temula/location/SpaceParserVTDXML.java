@@ -38,6 +38,10 @@ public class SpaceParserVTDXML implements SpaceParser {
 	/** I need a dictionary of what accounts for acceptable boolean term */
 	static Map<String,Boolean>acceptableBooleans = new HashMap<String,Boolean>();
 
+	static final String[] ignoreFields = new String[]{"totalrooms"};
+	
+	
+	
 	/** Mapping names to Fields and Methods here.  Note that lowercase itemprop names exactly match to the field names in the Space class */
 	static{
 		for(Field field:fields){
@@ -134,9 +138,24 @@ public class SpaceParserVTDXML implements SpaceParser {
 	 * @throws Exception
 	 */
 	private void setValue(String fieldName,String value,Space space)throws Exception{
+		
+		
+		
 		String fieldNameLC = fieldName.toLowerCase();
+		for(String ignoreName:ignoreFields){
+			if(ignoreName.equals(fieldNameLC))return;
+		}
+		
+		
 		Method method = nameMethod.get(fieldNameLC);
 		Field field = nameField.get(fieldNameLC);
+
+		
+		
+		if(method==null)throw new Exception("field name "+fieldName+" had a null method");
+		if(field==null)throw new Exception("field name "+fieldName+" had a null Field");
+		
+		
 		String className = field.getType().getName().toLowerCase();
 		try{
 			if(className.equals("boolean")){
@@ -149,6 +168,10 @@ public class SpaceParserVTDXML implements SpaceParser {
 			 else if(className.equals("int")){
 				 Integer itg = new Integer(value);
 				 method.invoke(space, itg);
+			 }
+			 else if(className.equals("double")){
+				 Double doub = new Double(value);
+				 method.invoke(space, doub);
 			 }
 			 else{
 
