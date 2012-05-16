@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.jboss.org/dtd/hibernate/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.temula.location">
+    <class name="Space" table="space">
+        <id name="spaceId" column="spc_id">
+            <generator class="native"/>
+        </id>
+        <property  name="name" column="spc_name" not-null="true"/>
+        <property name="proximityToTempleKM" column="spc_proximity_to_temple_km" />
+        <property name="numSingleACRooms" column="spc_num_single_ac_rooms"/>
+        <property name="numDoubleACRooms" column="spc_num_double_ac_rooms"/>
+        <property name="numNonACRooms" column="spc_num_non_ac_rooms"/>
+        <property name="hasMosquitoCoils" column="spc_has_mosquito_coils"/>
+        <property name="hasTapWater" column="spc_has_tap_water"/>
+        <property name="hasCleanSheets" column="spc_has_clean_sheets"/>
+        <property name="hasWesternToilet" column="spc_has_western_toilet"/>
+        <property name="hasIndianToilet" column="spc_has_indian_toilet"/>
+        <property name="hasHotWater247" column="spc_has_hot_water_24_7"/>
+        <property name="hasSoap" column="spc_has_soap"/>
+        <property name="hasBroom" column="spc_has_broom"/>
+        <property name="hasDoormat" column="spc_has_doormat"/>
+        <property name="hasLocksOnDoor" column="spc_has_locks_on_door"/>
+        <property name="hasWatchman" column="spc_has_watchman"/>
+        <property name="breakfastOptions" column="spc_breakfast_options"/>
+        <property name="lunchOptions" column="spc_lunch_options"/>
+        <property name="dinnerOptions" column="spc_dinner_options"/>
+        <property name="hasTV" column="spc_hasTV"/>
+        <property name="isFamilyFriendly" column="spc_is_family_friendly"/>
+        <property name="bedOptions" column="spc_bed_options"/>
+        <property name="hasTowels" column="spc_has_towels"/>
+        <property name="hasPoojaBookingOption" column="spc_has_pooja_booking_option"/>
+        <property name="hasBackupPower" column="spc_has_backup_power"/>
+        <property name="hasElevator" column="spc_has_elevator"/>
+        <property name="hasWheelChair" column="spc_has_wheelchair"/>
+        <property name="hasBottledWater" column="spc_has_bottled_water"/>
+    </class>
+</hibernate-mapping>

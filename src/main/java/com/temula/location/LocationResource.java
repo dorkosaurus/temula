@@ -33,49 +33,6 @@ public class LocationResource {
 	static final Logger logger = Logger.getLogger(LocationResource.class.getName());
 	
 
-	public static void main(String args[]){
-		LocationResource lr = new LocationResource();
-		String path2File = lr.getClass().getResource("/templates/location/space.stg").getPath();
-		STGroup g = new STGroupFile(path2File,TEMPLATE_START_CHAR,TEMPLATE_END_CHAR);
-		ST st = g.getInstanceOf("instance");
-		Space space = new Space();
-		List<Space>list = new ArrayList<Space>();
-		list.add(space);
-		space.setHasPoojaBookingOption(true);
-		space.setBedOptions("bedOptions");
-		space.setBreakfastOptions("breakfastOptions");
-		space.setLunchOptions("lunchOptions");
-		space.setDinnerOptions("dinnerOptions");
-		space.setHasBackupPower(true);
-		space.setHasBottledWater(true);
-		space.setHasBroom(true);
-		space.setHasCleanSheets(true);
-		space.setHasDoormat(true);
-		space.setHasElevator(true);
-		space.setHasHotWater247(true);
-		space.setHasIndianToilet(true);
-		space.setHasLocksOnDoor(true);
-		space.setHasMosquitoCoils(true);
-		space.setHasPoojaBookingOption(true);
-		space.setHasSoap(true);
-		space.setHasTapWater(true);
-		space.setHasTV(true);
-		space.setHasTowels(true);
-		space.setHasWatchman(true);
-		space.setHasWheelChair(true);
-		space.setHasWesternToilet(true);
-		space.setIsFamilyFriendly(true);
-		space.setLunchOptions("lunchOptions");
-		space.setName("name");
-		space.setNumDoubleACRooms(1);
-		space.setNumNonACRooms(2);
-		space.setNumSingleACRooms(3);
-		space.setProximityToTempleKM(0.5);
-		space.setSpaceId(1234);
-		StringTemplateProcessor stp = new StringTemplateProcessor();
-		String ret = stp.bind(space, st, "p");
-		System.out.println(ret);
-	}
 	
 	@GET
 	@Produces("text/plain")
