@@ -1,10 +1,13 @@
 package com.temula.dataprovider;
 
 
+import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.Response.Status;
 
 import org.hibernate.Criteria;
@@ -18,11 +21,19 @@ import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
 import com.temula.DataProvider;
+import com.temula.location.Clock;
 import com.temula.location.LocationResource;
 import com.temula.location.Space;
 
+@SuppressWarnings("serial")
 public class HibernateDataProvider<T> extends HttpServlet  implements DataProvider<T> {
 
+	public void doGet(HttpServletRequest req, HttpServletResponse resp)
+	throws IOException {
+		resp.getWriter().write(new char[]{'o','k'});
+		resp.getWriter().flush();
+	}
+	
 	private static ServiceRegistry serviceRegistry;
 	private static SessionFactory sessionFactory=null;//configureSessionFactory();
 	static final Logger logger = Logger.getLogger(LocationResource.class.getName());
@@ -40,7 +51,9 @@ public class HibernateDataProvider<T> extends HttpServlet  implements DataProvid
 	    Configuration configuration = new Configuration();
 	    configuration.configure();
 	    serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();        
+	    Clock clock = new Clock();
 	    sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+	    clock.lap("time to build hibernate session factory");
 	    return sessionFactory;
 	}
 
