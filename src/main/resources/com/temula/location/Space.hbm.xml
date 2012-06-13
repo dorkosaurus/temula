@@ -35,5 +35,7 @@
         <property name="hasElevator" column="spc_has_elevator"/>
         <property name="hasWheelChair" column="spc_has_wheelchair"/>
         <property name="hasBottledWater" column="spc_has_bottled_water"/>
+        <property name="smallImageId" column="spc_small_image_id"/>
+        <property name="largeImageId" column="spc_large_image_id"/>
     </class>
 </hibernate-mapping>

@@ -81,9 +81,9 @@ instance(p)::= <<
 		<div class="pictures">
 			<!-- we need to figure out the size of pictures -->
 			<!-- Big image -->
-			<img width="342" height="292" alt="image from image sprite goes here" src="image.png"/>	
+			<img width="342" height="292" alt="image from image sprite goes here" src="http://templereservationimages.appspot.com/resources/images/^p.largeImageId$"/>	
 			<!-- little image -->
-			<img width="342" height="200" alt="image from image sprite goes here" src="image.png"/>	
+			<img width="342" height="200" alt="image from image sprite goes here" src="http://templereservationimages.appspot.com/resources/images/^p.smallImageId$"/>	
 		</div>
 		
 		<div class="data">

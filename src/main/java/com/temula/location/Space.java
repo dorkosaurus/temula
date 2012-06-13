@@ -30,7 +30,9 @@ public class Space {
 	boolean hasElevator=false;
 	boolean hasWheelChair=false;
 	boolean hasBottledWater=false;
-
+	int smallImageId=0;
+	int largeImageId=0;
+	
 	private boolean stringEquals(String a,String b){
 		if(a==null && b!=null)return false;
 		if(a!=null && b==null)return false;
@@ -317,6 +319,22 @@ public class Space {
 
 	public void setBedOptions(String bed) {
 		this.bedOptions = bed;
+	}
+
+	public int getSmallImageId() {
+		return smallImageId;
+	}
+
+	public void setSmallImageId(int smallImageId) {
+		this.smallImageId = smallImageId;
+	}
+
+	public int getLargeImageId() {
+		return largeImageId;
+	}
+
+	public void setLargeImageId(int largeImageId) {
+		this.largeImageId = largeImageId;
 	}
 
 }
