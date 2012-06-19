@@ -1,27 +1,62 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
-<!-- above set at the top of the file will set     -->
-<!-- the browser's rendering engine into           -->
-<!-- "Quirks Mode". Replacing this declaration     -->
-<!-- with a "Standards Mode" doctype is supported, -->
-<!-- but may lead to some differences in layout.   -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Temula</title>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+	<link rel="stylesheet" href="/temula/temulastyle.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="http://jqueryui.com/themes/base/jquery.ui.all.css">
+	<script src="http://jqueryui.com/jquery-1.7.2.js"></script>
+	<script src="http://jqueryui.com/ui/jquery.ui.core.js"></script>
+	<script src="http://jqueryui.com/ui/jquery.ui.widget.js"></script>
+	<script src="http://jqueryui.com/ui/jquery.ui.datepicker.js"></script>
+	<link rel="stylesheet" href="http://jqueryui.com/demos/demos.css">
+	<script>
+	$(function() {
+		$( "#checkout" ).datepicker();
+		$( "#checkin" ).datepicker();
+	});
+	</script>
+</head>
+<body>
+	<div>
+		<img width="988" height="67" alt="temula logo" src="/logo.png"/>
+	</div>
+	<div>
+		<form action="/location/space/" method="GET">
+			<fieldset>
+				<legend>RESERVE YOUR SPACE</legend>
+			
+				<p>
+				<label for="destination">Destination</label>
+				<input type='text' size='40' name='destination' id='destination' value='Kanchi'/>
+				</p>
+								
+				<p>
+				<label for="checkin">Check-In</label>
+				<input type='text' name='checkin' id='checkin' size='10'/>
+				</p>
 
-<html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Hello App Engine</title>
-  </head>
+				<p>				
+				<label for="checkout">Check-Out</label>
+				<input type='text' name='checkout' id='checkout' size='10'/>
+				</p>				
 
-  <body>
-    <h1>Hello App Engine!</h1>
-	
-    <table>
-      <tr>
-        <td colspan="2" style="font-weight:bold;">Available Servlets:</td>        
-      </tr>
-      <tr>
-        <td><a href="guestbook">Guestbook</a></td>
-      </tr>
-    </table>
+				<p>				
+				<label for="numrooms">Number Rooms</label>
+				<select id='numrooms' name='numrooms'><option value='1'>1</option></select>
+
+				<label for="numadults">Adults (18+)</label>
+				<select id='numadults' name='numadults'><option value='1'>1</option></select>
+
+				<label for="numminors">Minors (0-17)</label>
+				<select id='numminors' name='numminors'><option value='1'>1</option></select>
+				</p>				
+				
+				<input type='submit' value='SEARCH'/>
+			</fieldset>
+		</form>
+
+	</div>	
+
   </body>
 </html>

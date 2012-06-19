@@ -8,7 +8,7 @@ list(list)::= <<
 </head>
 <body>
 	<div>
-		<img width="106" height="40" alt="temula logo" src="logo.png"/>
+		<img width="988" height="67" alt="temula logo" src="/logo.png"/>
 	</div>
 	<div class="searchform">
 		<form>
@@ -77,7 +77,9 @@ instance(p)::= <<
 
 	<body>
 		<!-- MENU -->
-		<div>Menu goes here</div>
+	<div>
+		<img width="988" height="67" alt="temula logo" src="/logo.png"/>
+	</div>
 		<div class="pictures">
 			<!-- we need to figure out the size of pictures -->
 			<!-- Big image -->
@@ -120,7 +122,7 @@ shortxhtml(p)::= <<
 		</div>
 		<div>
 			<div class="spacedetails">
-					<span ><a itemprop="spaceId" href='space/^p.spaceId$'><span itemprop="name">^p.name$</span></a></span>
+					<span ><a itemprop="spaceId" href='/location/space/^p.spaceId$'><span itemprop="name">^p.name$</span></a></span>
 			</div>
 			<div class="summary">		
 				<div>
