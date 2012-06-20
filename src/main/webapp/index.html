@@ -3,17 +3,19 @@
 <head>
 	<title>Temula</title>
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
-	<link rel="stylesheet" href="/temula/temulastyle.css" type="text/css" media="all" />
-	<link rel="stylesheet" href="http://jqueryui.com/themes/base/jquery.ui.all.css">
-	<script src="http://jqueryui.com/jquery-1.7.2.js"></script>
-	<script src="http://jqueryui.com/ui/jquery.ui.core.js"></script>
-	<script src="http://jqueryui.com/ui/jquery.ui.widget.js"></script>
-	<script src="http://jqueryui.com/ui/jquery.ui.datepicker.js"></script>
-	<link rel="stylesheet" href="http://jqueryui.com/demos/demos.css">
+	<link rel="stylesheet" href="/temulastyle.css" type="text/css" media="all" />
+	<link type="text/css" href="/js/jquery-ui-1.8.21.custom/css/ui-lightness/jquery-ui-1.8.21.custom.css" rel="stylesheet" />
+	<script src="/js/jquery-ui-1.8.21.custom/js/jquery-1.7.2.min.js"></script>
+	<script src="/js/jquery-ui-1.8.21.custom/js/jquery-ui-1.8.21.custom.min.js"></script>
 	<script>
 	$(function() {
 		$( "#checkout" ).datepicker();
 		$( "#checkin" ).datepicker();
+		$("input#destination").autocomplete(
+			{
+    		source: ["Kanchi"]
+			}
+		);
 	});
 	</script>
 </head>
@@ -28,7 +30,7 @@
 			
 				<p>
 				<label for="destination">Destination</label>
-				<input type='text' size='40' name='destination' id='destination' value='Kanchi'/>
+				<input type='text' size='40' name='destination' id='destination'/>
 				</p>
 								
 				<p>
