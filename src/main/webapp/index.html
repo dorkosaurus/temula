@@ -3,10 +3,12 @@
 <head>
 	<title>Temula</title>
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
-	<link rel="stylesheet" href="/temulastyle.css" type="text/css" media="all" />
-	<link type="text/css" href="/js/jquery-ui-1.8.21.custom/css/ui-lightness/jquery-ui-1.8.21.custom.css" rel="stylesheet" />
-	<script src="/js/jquery-ui-1.8.21.custom/js/jquery-1.7.2.min.js"></script>
-	<script src="/js/jquery-ui-1.8.21.custom/js/jquery-ui-1.8.21.custom.min.js"></script>
+	<link rel="stylesheet" href="temulastyle.css" type="text/css" media="all" />
+	<link type="text/css" href="js/jquery-ui-1.8.21.custom/css/le-frog/jquery-ui-1.8.21.custom.css" rel="stylesheet" />
+	<script src="js/jquery-ui-1.8.21.custom/js/jquery-1.7.2.min.js"></script>
+	<script src="js/jquery-ui-1.8.21.custom/js/jquery-ui-1.8.21.custom.min.js"></script>
+	<link rel="stylesheet" href="css/grid.css">
+	
 	<script>
 	$(function() {
 		$( "#checkout" ).datepicker();
@@ -20,45 +22,74 @@
 	</script>
 </head>
 <body>
-	<div>
-		<img width="988" height="67" alt="temula logo" src="/logo.png"/>
+<div class="row">
+	<div class="column grid_4"><img  alt="temula logo" src="logo.png"/></div>
+	<div class="column grid_3">LIST YOUR SPACE</div>
+	<div class="column grid_2">ABOUT US</div>
+	<div class="column grid_1">HELP</div>
+	<div class="column grid_2">CONTACT US</div>
+</div>
+<div class="row">
+	<div class="column grid_12">&nbsp;</div>
+</div>
+<div class="row">
+	<div class="column grid_7">
+		<div class="row">
+			<div class="column grid_7">
+					
+				<form action="/location/space/" method="GET">
+						FIND YOUR ROOM<hr/>
+					<p>								
+						<label for="destination">Destination</label>
+						<input type='text' size='60' name='destination' id='destination'/>
+					</p>
+												
+					<div class="row">
+						<div class="column grid_3">
+							<label for="checkin">Check-In</label>
+							<input type='text' name='checkin' id='checkin' size='10'/>
+						</div>
+						<div class="column grid_4">
+							<label for="numrooms">Number Rooms</label>
+							<select id='numrooms' name='numrooms'><option value='1'>1</option></select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="column grid_3">
+							<label for="checkout">Check-Out</label>
+							<input type='text' name='checkout' id='checkout' size='10'/>
+						</div>
+						<div class="column grid_2">
+							<label for="numadults">Adults (18+)</label>
+							<select id='numadults' name='numadults'><option value='1'>1</option></select>
+						</div>
+						<div class="column grid_2">
+							<label for="numminors">Minors (0-17)</label>
+							<select id='numminors' name='numminors'><option value='1'>1</option></select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="column grid_6"/>
+						<div class="column grid_1"/>
+							<input type='submit' value='SEARCH'/>
+						</div>
+					</div>
+			</form>
+		</div>
+		<div class="row">
+		<div class="column grid_7">
+			<p>* This is a beta site currently only offering search results for Kanchipuram, TN</p>
+			<img src="phoneimage.png"/>
+		</div>
+		</div><!--row -->
 	</div>
-	<div>
-		<form action="/location/space/" method="GET">
-			<fieldset>
-				<legend>RESERVE YOUR SPACE</legend>
-			
-				<p>
-				<label for="destination">Destination</label>
-				<input type='text' size='40' name='destination' id='destination'/>
-				</p>
-								
-				<p>
-				<label for="checkin">Check-In</label>
-				<input type='text' name='checkin' id='checkin' size='10'/>
-				</p>
-
-				<p>				
-				<label for="checkout">Check-Out</label>
-				<input type='text' name='checkout' id='checkout' size='10'/>
-				</p>				
-
-				<p>				
-				<label for="numrooms">Number Rooms</label>
-				<select id='numrooms' name='numrooms'><option value='1'>1</option></select>
-
-				<label for="numadults">Adults (18+)</label>
-				<select id='numadults' name='numadults'><option value='1'>1</option></select>
-
-				<label for="numminors">Minors (0-17)</label>
-				<select id='numminors' name='numminors'><option value='1'>1</option></select>
-				</p>				
-				
-				<input type='submit' value='SEARCH'/>
-			</fieldset>
-		</form>
-
-	</div>	
-
+	<div class="column grid_5">
+		<h3>WHY TEMULA:</h3>
+		<ul>
+			<li>Reason 1</li>
+			<li>Reason 2</li>
+		</ul>
+	</div>
+</div>
   </body>
 </html>

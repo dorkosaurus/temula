@@ -23,7 +23,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
     </servlet>
     <servlet-mapping>
            <servlet-name>JerseyTest</servlet-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/location/*</url-pattern>
     </servlet-mapping>
 
 

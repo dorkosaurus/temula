@@ -6,6 +6,14 @@
 	font-weight:bold;	
 }
 
+
 .display-block{
+	display:block;	
+}
+
+h1, p, a, body {
+	font-family: Verdana;
+}
+label{
 	display:block;	
 }
