@@ -56,12 +56,12 @@ public class TestLocation extends TestCase {
 	        httpServer.stop();
 	 }
 	public void testLocationGet()throws Exception{
-		 String response = r.path("location").get(String.class);
+		 String response = r.path("resource/location").get(String.class);
 		 assertTrue(response.equals("testme"));
 	}
 	public void testTempleGet()throws Exception{
 		 logger.info("entering testTempleGet");
-		 String response = r.path("location/space/").get(String.class);
+		 String response = r.path("resource/location/space/").get(String.class);
 		 SpaceParser parser = new SpaceParserVTDXML();
 		 List<Space>spaces = parser.parseXHTML(response);
 		 assertNotNull(spaces);
@@ -87,7 +87,7 @@ public class TestLocation extends TestCase {
 		 StringTemplateProcessor stp = new StringTemplateProcessor();
 		 String ret = stp.bind(list, st, "list");
 		 
-		 ClientResponse response = r.path("location/space/").type(MediaType.TEXT_HTML).post(ClientResponse.class,ret );
+		 ClientResponse response = r.path("resource/location/space/").type(MediaType.TEXT_HTML).post(ClientResponse.class,ret );
 		 ClientResponse.Status status = response.getClientResponseStatus();
 		 assertTrue(status==ClientResponse.Status.OK);
 	 }

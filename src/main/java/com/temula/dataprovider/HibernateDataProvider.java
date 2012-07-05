@@ -44,10 +44,6 @@ public class HibernateDataProvider<T> extends HttpServlet  implements DataProvid
 	private static SessionFactory sessionFactory=null;//configureSessionFactory();
 	static final Logger logger = Logger.getLogger(LocationResource.class.getName());
 
-	static{
-		configureSessionFactory();
-	}
-
 	
 	public static void main(String args[]){
 		System.out.println("Starting hibernate!");
@@ -67,7 +63,8 @@ public class HibernateDataProvider<T> extends HttpServlet  implements DataProvid
 	}
 
     private static SessionFactory getSessionFactory() {
-        return sessionFactory;
+    	if(sessionFactory==null)sessionFactory=configureSessionFactory();
+    	return sessionFactory;
     }
 
 	

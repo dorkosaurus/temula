@@ -21,7 +21,7 @@ import org.stringtemplate.v4.STGroupFile;
 import com.temula.StringTemplateProcessor;
 import com.temula.dataprovider.HibernateDataProvider;
 
-@Path("location")
+@Path("/location/")
 public class LocationResource {
 	private static final char TEMPLATE_START_CHAR='^';
 	private static final char TEMPLATE_END_CHAR='$';

@@ -23,20 +23,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
     </servlet>
     <servlet-mapping>
            <servlet-name>JerseyTest</servlet-name>
-        <url-pattern>/location/*</url-pattern>
-    </servlet-mapping>
-
-
- <servlet>
-           <servlet-name>HibernateStartup</servlet-name>
-            <servlet-class>
-                com.temula.dataprovider.HibernateDataProvider
-            </servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-           <servlet-name>HibernateStartup</servlet-name>
-        <url-pattern>/hibernate/*</url-pattern>
+        <url-pattern>/resource/*</url-pattern>
     </servlet-mapping>
 
    <session-config>

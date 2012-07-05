@@ -1,0 +1,86 @@
+list(list)::= <<
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Temula - search availability</title>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+	<link rel="stylesheet" href="/temula/temulastyle.css" type="text/css" media="all" />
+	<link type="text/css" href="/temula/js/jquery-ui-1.8.21.custom/css/le-frog/jquery-ui-1.8.21.custom.css" rel="stylesheet" />
+	<script src="/temula/js/jquery-ui-1.8.21.custom/js/jquery-1.7.2.min.js"></script>
+	<script src="/temula/js/jquery-ui-1.8.21.custom/js/jquery-ui-1.8.21.custom.min.js"></script>
+	<link rel="stylesheet" href="/temula/css/grid.css">
+	
+	<script>
+	$(function() {
+		$( "#checkout" ).datepicker();
+		$( "#checkin" ).datepicker();
+		$("input#destination").autocomplete(
+			{
+    		source: ["Kanchi"]
+			}
+		);
+	});
+	</script>
+</head>
+<body>
+<div class="row">
+	<div class="column grid_4"><img  alt="temula logo" src="/temula/logo.png"/></div>
+	<div class="column grid_3">LIST YOUR SPACE</div>
+	<div class="column grid_2">ABOUT US</div>
+	<div class="column grid_1">HELP</div>
+	<div class="column grid_2">CONTACT US</div>
+</div>
+<div class="row">
+		<form>
+			<div class="column grid_2"><label> Destination</label><input type="text" name="destination" size="40"/></div>
+			<div class="column grid_2"><label>Check-in</label><input type="text" name="checkin" size="10" value="mm/dd/yyyy"/></div>
+			<div class="column grid_2"><label>Check-out</label><input type="text" name="checkout" size="10" value="mm/dd/yyyy"/></div>
+			<div class="column grid_2"><label># rooms</label><select name="numrooms"><option value="1">1</option></select></div>
+			<div class="column grid_2"><label>Adults (18+)</label><select name="numadults"><option value="1">1</option></select></div>
+			<div class="column grid_2"><label>Minors (0-17)</label><select name="numminors"><option value="1">1</option></select><input type="SUBMIT" value="SEARCH"/></div>
+		</form>
+</div>
+	<div class="searchresults">
+		<div class="row"><div class="column grid_12"><select><option>Sort results by:</option></select></div></div>
+		<ol>
+			^list:listelement()$
+		</ol>
+	</div>
+</body>
+</html>
+>>
+
+
+
+
+
+listelement(p)::= <<
+	<li>
+		^shortxhtml(p)$
+	</li>
+>>
+
+shortxhtml(p)::= <<
+<div class="spaceataglance" itemscope="itemscope" itemtype="http://schema.org/Place/Space">
+		<div class="row">
+			<div class="column grid_2">
+				<img width="114" height="74" alt="image from image sprite goes here" src="image.png"/>
+			</div>
+			<div class="column grid_2">
+					<span ><a itemprop="spaceId" href='/location/space/^p.spaceId$'><span itemprop="name">^p.spaceName$</span></a></span>
+			</div>
+			<div class="column grid_2">
+				<label># Single AC</label>
+				<span itemprop="hasTV">^p.numSingleACRooms$</span>
+			</div>
+			<div class="column grid_2">
+				<label># Double AC</label>
+				<span itemprop="hasTapWater">^p.numDoubleACRooms$ (^p.rupeesDoubleACRoom$ rupees)</span>
+			</div>
+			<div class="column grid_4">
+				<label># Non AC</label>
+				<span itemprop="breakfastOptions">^p.numNonACRooms$  (^p.rupeesNonACRoom$ rupees)</span>
+			</div>
+		</div>
+</div>
+>>
